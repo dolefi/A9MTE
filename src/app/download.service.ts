@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DownloadService {
     DwnApi = 'https://restpack.io/api/screenshot/v6/capture?access_token=';
-    apiKey = 'TEST';
+    apiKey = 'HQKRAKBKRARAAJBKYEIAAQ';
     constructor(private http: HttpClient) { }
 
     downloadArticle(url) {
