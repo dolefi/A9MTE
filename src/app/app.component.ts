@@ -14,7 +14,7 @@ export class AppComponent {
     {
       title: 'News',
       url: '/home',
-      icon: 'filing'
+      icon: 'paper'
     },
     {
       title: 'Preferences',
