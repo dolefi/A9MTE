@@ -12,34 +12,7 @@ import { Router } from '@angular/router';
 
 export class HomePage implements OnInit{
 
-    countries: any[] = [
-        {
-            id: 1,
-            name: 'Czech',
-            code: 'cz',
-        },
-        {
-            id: 2,
-            name: 'Slovakia',
-            code: 'sk',
-        },
-        {
-            id: 3,
-            name: 'Russia',
-            code: 'ru',
-        },
-        {
-            id: 4,
-            name: 'America',
-            code: 'us',
-        },
-        {
-            id: 5,
-            name: 'Germany',
-            code: 'de',
-        }
-    ];
-
+    country_select: any;
 
     newsArray: any = [];
     constructor(private news: NewsService, private router: Router) {
@@ -49,8 +22,9 @@ export class HomePage implements OnInit{
         this.loadHeadLines("cz");
     }
 
-    onChange(country_select) {
-        this.loadHeadLines(country_select);
+    selectChange(country_select) {
+        this.loadHeadLines(this.country_select);
+        console.info("Selected:", country_select);
     }
 
     loadHeadLines(location) {
