@@ -17,9 +17,9 @@ export class AppComponent {
       icon: 'filing'
     },
     {
-      title: 'List',
+      title: 'Preferences',
       url: '/list',
-      icon: 'list'
+      icon: 'more'
     }
   ];
 
