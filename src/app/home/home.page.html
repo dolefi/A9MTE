@@ -13,7 +13,7 @@
         <ion-list>
             <ion-item>
                 <ion-label>Country</ion-label>
-                <ion-select [compareWith]="compareWith" [(ngModel)]="country_select">
+                <ion-select #newSelect [(ngModel)]="country_select" (change)="onChange(country_select)">
                     <ion-select-option *ngFor="let country of countries">{{country.name}}</ion-select-option>
                 </ion-select>
             </ion-item>

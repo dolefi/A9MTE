@@ -46,12 +46,16 @@ export class HomePage implements OnInit{
     }
 
     ngOnInit(): void {
-        this.loadHeadLines();
+        this.loadHeadLines("cz");
     }
 
-    loadHeadLines() {
-        
-        this.news.getNews("cz").subscribe(news => {
+    onChange(country_select) {
+        this.loadHeadLines(country_select);
+    }
+
+    loadHeadLines(location) {
+
+        this.news.getNews(location).subscribe(news => {
             this.newsArray = news['articles'];
             console.log(this.newsArray);
         });
