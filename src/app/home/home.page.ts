@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { NewsService } from '../news.service';
+import { DownloadService } from '../download.service';
 import { Router } from '@angular/router';
 
 
@@ -15,8 +16,10 @@ export class HomePage implements OnInit{
     country_select: any;
 
     newsArray: any = [];
-    constructor(private news: NewsService, private router: Router) {
+    downloadArray: any = [];
+    constructor(private news: NewsService, private router: Router, private download: DownloadService) {
     }
+
 
     ngOnInit(): void {
         this.loadHeadLines("cz");
@@ -34,13 +37,16 @@ export class HomePage implements OnInit{
         });
     }
 
+    Download_article(URL) {
+
+        this.downloadArticle(URL).subscribe(downloadArray => {
+            this.newsArray = downloadArray['returned_data'];
+            console.log(this.downloadArray);
+        });
+    }
+
     getDetails(news) {
         this.router.navigate(['/newsdetail', { 'title': news.title, 'desc': news.description, 'img': news.urlToImage, 'url': news.url }]);
     }
 
 }
-
-export class SelectExample {
-    
-}
-

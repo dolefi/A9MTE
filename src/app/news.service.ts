@@ -10,7 +10,7 @@ export class NewsService {
     constructor(private http: HttpClient) { }
 
     getNews(loc) {
-        const url = this.NewsApi + 'top-headlines?country=' + loc + this.apiKey;
+        const url = this.NewsApi + 'top-headlines?pageSize=40&country=' + loc + this.apiKey;
         return this.http.get(url);
     }
 }
