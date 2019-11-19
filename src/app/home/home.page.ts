@@ -13,11 +13,9 @@ import { Router } from '@angular/router';
 
 export class HomePage implements OnInit{
 
-    country_select: any;
-
     newsArray: any = [];
     downloadArray: any = [];
-    constructor(private news: NewsService, private router: Router, private download: DownloadService) {
+    constructor(private news: NewsService, private router: Router, private download: DownloadService, private router2: Router) {
     }
 
 
@@ -25,8 +23,8 @@ export class HomePage implements OnInit{
         this.loadHeadLines("cz");
     }
 
-    selectChange(country_select) {
-        this.loadHeadLines(this.country_select);
+    selectChange(country_select: any) {
+        this.loadHeadLines(country_select);
     }
 
     loadHeadLines(location) {
@@ -39,7 +37,7 @@ export class HomePage implements OnInit{
 
     Download_article(URL) {
 
-        this.downloadArticle(URL).subscribe(downloadArray => {
+        this.download.downloadArticle(URL).subscribe(downloadArray => {
             this.newsArray = downloadArray['returned_data'];
             console.log(this.downloadArray);
         });
@@ -49,4 +47,7 @@ export class HomePage implements OnInit{
         this.router.navigate(['/newsdetail', { 'title': news.title, 'desc': news.description, 'img': news.urlToImage, 'url': news.url }]);
     }
 
+    getDetailsDownload(download) {
+        this.router2.navigate(['/downloaddetail', { 'file': download.file, 'length': download.length }]);
+    }
 }
