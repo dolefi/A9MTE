@@ -24,7 +24,6 @@ export class HomePage implements OnInit{
 
     selectChange(country_select) {
         this.loadHeadLines(this.country_select);
-        console.info("Selected:", country_select);
     }
 
     loadHeadLines(location) {

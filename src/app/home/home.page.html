@@ -13,8 +13,8 @@
         <ion-list>
             <ion-item>
                 <ion-label>Country</ion-label>
-                <ion-select #newSelect [(ngModel)]="country_select" (ionChange)="selectChange(country_select)">
-                    <ion-select-option value="cz" checked="true">Czech</ion-select-option>
+                <ion-select #newSelect [(ngModel)]="country_select" (ionChange)="selectChange(country_select)" interface="popover">
+                    <ion-select-option value="cz" selected>Czech</ion-select-option>
                     <ion-select-option value="sk">Slovakia</ion-select-option>
                     <ion-select-option value="de">Germany</ion-select-option>
                     <ion-select-option value="us">America</ion-select-option>
@@ -34,7 +34,7 @@
             </p>
             <div class="ion-text-center">
                 <div class="col">
-                    <ion-button ion-button fill="outline" href="{{article.url}}" large target="_self">Read full article</ion-button>
+                    <ion-button ion-button fill="outline" href="{{article.url}}" strong color="medium">Continue reading...</ion-button>
                 </div>
             </div>
         </ion-card-content>
