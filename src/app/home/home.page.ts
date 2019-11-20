@@ -17,6 +17,7 @@ export class HomePage implements OnInit{
     newsArray: any = [];
     downloadArray: any = [];
     maxValue: string = "Nothing gotten yet";
+    NUMBER: number = 0;
 
     constructor(private news: NewsService, private router: Router, private download: DownloadService, private router2: Router, private storage: Storage) {
     }
@@ -42,13 +43,18 @@ export class HomePage implements OnInit{
         this.router.navigate(['/newsdetail', { 'title': news.title, 'desc': news.description, 'img': news.urlToImage, 'url': news.url }]);
     }
 
-    buttonSetPush(url) {
+    buttonSetPush(url, urlToImage, title, description) {
 
         console.log('Storage driver ', this.storage.driver);
+        var array: string[];
+        array = [url, urlToImage, title, description]
+
+        console.log('test', JSON.stringify(array));
 
         this.storage.ready().then((stuff) => {
-            console.log('stuff', stuff);
-            this.storage.set('URL', url)
+            console.log('should get old and in with the new');
+           
+            this.storage.set('stored_articles', JSON.stringify(array));
         }).catch(err => { console.log('errr', err) })
     }
 
@@ -56,9 +62,10 @@ export class HomePage implements OnInit{
 
         console.log('Storage driver ', this.storage.driver);
 
-        this.storage.get('URL').then((val) => {
+        this.storage.get('stored_articles').then((val) => {
             if (val != null) this.maxValue = val;
-            console.log('Your name is', val);
+            console.log('Returned Data: ', JSON.parse(val));
+
         })
             .catch(err => { console.log('errr', err) })
     }

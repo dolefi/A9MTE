@@ -10,18 +10,19 @@
 </ion-header>
 
 <ion-content fullscreen>
-        <ion-list>
-            <ion-item>
-                <ion-label>Country</ion-label>
-                <ion-select #newSelect [(ngModel)]="country_select" (ionChange)="selectChange(country_select)" interface="popover">
-                    <ion-select-option value="cz" selected>Czech</ion-select-option>
-                    <ion-select-option value="sk">Slovakia</ion-select-option>
-                    <ion-select-option value="de">Germany</ion-select-option>
-                    <ion-select-option value="us">America</ion-select-option>
-                    <ion-select-option value="ru">Russia</ion-select-option>
-                </ion-select>
-            </ion-item>
-        </ion-list>
+    <button ion-button secondary (click)="buttonGetPush()">Push to get</button>
+    <ion-list>
+        <ion-item>
+            <ion-label>Country</ion-label>
+            <ion-select #newSelect [(ngModel)]="country_select" (ionChange)="selectChange(country_select)" interface="popover">
+                <ion-select-option value="cz" selected>Czech</ion-select-option>
+                <ion-select-option value="sk">Slovakia</ion-select-option>
+                <ion-select-option value="de">Germany</ion-select-option>
+                <ion-select-option value="us">America</ion-select-option>
+                <ion-select-option value="ru">Russia</ion-select-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
 
     <ion-card *ngFor="let article of newsArray">
         <ion-img src="{{article.urlToImage}}"></ion-img>
@@ -38,7 +39,7 @@
                         <ion-button ion-button fill="outline" href="{{article.url}}" color="medium">Read article</ion-button>
                     </ion-col>
                     <ion-col col-6>
-                        <ion-button ion-button fill="outline" (click)="buttonSetPush(article.url)" color="medium">Save story</ion-button>
+                        <ion-button ion-button fill="outline" (click)="buttonSetPush(article.url, article.urlToImage, article.title, article.description)" color="medium">Save story</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>
