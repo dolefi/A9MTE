@@ -18,7 +18,7 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-card *ngFor="let article of StoreArray | slice:1">
+    <ion-card *ngFor="let article of StoreArray | slice:0:StoreArray.length-1">
         <ion-img src="{{article.urlToImage}}"></ion-img>
         <ion-card-header>
             <ion-card-title>{{article.title}}</ion-card-title>
