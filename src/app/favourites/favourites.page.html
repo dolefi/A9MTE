@@ -10,10 +10,15 @@
 </ion-header>
 
 <ion-content fullscreen>
-    <ion-button ion-button (click)="buttonGet()">Push to get</ion-button>
-    <ion-button ion-button (click)="buttonClear()">Push to clear</ion-button>
-   
-    <ion-card *ngFor="let article of StoreArray">
+    <ion-grid>
+        <ion-row align-items-center text-center>
+            <ion-col>
+                <ion-button ion-button (click)="GenerateStoredNews()" color="dark" fill="outline" strong>Reload</ion-button>
+                <ion-button ion-button (click)="ClearAlert()" color="danger" fill="outline" strong>Clear All</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-card *ngFor="let article of StoreArray | slice:1">
         <ion-img src="{{article.urlToImage}}"></ion-img>
         <ion-card-header>
             <ion-card-title>{{article.title}}</ion-card-title>
@@ -25,7 +30,7 @@
             <ion-grid>
                 <ion-row align-items-center text-center>
                     <ion-col>
-                        <ion-button ion-button fill="outline" href="{{article.url}}" color="medium">Read article</ion-button>
+                        <ion-button ion-button fill="outline" href="{{article.url}}" color="dark">Read article</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>
