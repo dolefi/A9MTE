@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { NewsService } from '../news.service';
 import { DownloadService } from '../download.service';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -15,7 +16,9 @@ export class HomePage implements OnInit{
 
     newsArray: any = [];
     downloadArray: any = [];
-    constructor(private news: NewsService, private router: Router, private download: DownloadService, private router2: Router) {
+    maxValue: string = "Nothing gotten yet";
+
+    constructor(private news: NewsService, private router: Router, private download: DownloadService, private router2: Router, private storage: Storage) {
     }
 
 
@@ -35,19 +38,28 @@ export class HomePage implements OnInit{
         });
     }
 
-    Download_article(URL) {
-
-        this.download.downloadArticle(URL).subscribe(downloadArray => {
-            this.newsArray = downloadArray['returned_data'];
-            console.log(this.downloadArray);
-        });
-    }
-
     getDetails(news) {
         this.router.navigate(['/newsdetail', { 'title': news.title, 'desc': news.description, 'img': news.urlToImage, 'url': news.url }]);
     }
 
-    getDetailsDownload(download) {
-        this.router2.navigate(['/downloaddetail', { 'file': download.file, 'length': download.length }]);
+    buttonSetPush(url) {
+
+        console.log('Storage driver ', this.storage.driver);
+
+        this.storage.ready().then((stuff) => {
+            console.log('stuff', stuff);
+            this.storage.set('URL', url)
+        }).catch(err => { console.log('errr', err) })
+    }
+
+    buttonGetPush() {
+
+        console.log('Storage driver ', this.storage.driver);
+
+        this.storage.get('URL').then((val) => {
+            if (val != null) this.maxValue = val;
+            console.log('Your name is', val);
+        })
+            .catch(err => { console.log('errr', err) })
     }
 }
