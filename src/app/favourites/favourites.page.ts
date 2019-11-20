@@ -8,7 +8,7 @@ import { Storage } from '@ionic/storage';
 })
 export class FavouritesPage implements OnInit {
 
-    newsArray: any = [];
+    StoreArray: any = [];
     downloadArray: any = [];
     maxValue: string = "Nothing gotten yet";
     //ID: number = 0;
@@ -20,33 +20,12 @@ export class FavouritesPage implements OnInit {
         this.buttonGet();
     }
 
-    buttonStore(url, urlToImage, title, description) {
-
-        console.log('Storage driver ', this.storage.driver);
-        var array: string[];
-        array = [url, urlToImage, title, description]
-        let ID = 1;
-
-        this.storage.ready().then((stuff) => {
-            console.log('should get old and in with the new');
-
-            var name;
-            this.storage.get('stored_article_number').then((val) => {
-                ID = val;
-                ID++;
-                name = 'stored_articles_' + ID;
-                console.log("pushing: ", JSON.stringify(array));
-                this.storage.set(name, JSON.stringify(array));
-                this.storage.set('stored_article_number', ID);
-            })
-        }).catch(err => { console.log('errr', err) })
-    }
-
     buttonGet() {
         this.storage.forEach((value, key) => {
-            console.log('Returned Key: ', key);
-            console.log('Returned Data: ', JSON.parse(value));
+            this.StoreArray.push(JSON.parse(value));
         }).catch(err => { console.log('errr', err) })
+        console.log("created array", this.StoreArray);
+        this.StoreArray.shift();
     }
 
     buttonClear() {

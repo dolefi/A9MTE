@@ -11,6 +11,7 @@ export class NewsService {
 
     getNews(loc) {
         const url = this.NewsApi + 'top-headlines?pageSize=40&country=' + loc + this.apiKey;
+        console.log("return from URL", this.http.get(url));
         return this.http.get(url);
     }
 }

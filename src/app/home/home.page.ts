@@ -19,7 +19,7 @@ export class HomePage implements OnInit{
     maxValue: string = "Nothing gotten yet";
     //ID: number = 0;
 
-    constructor(private news: NewsService, private router: Router, private download: DownloadService, private router2: Router, private storage: Storage) {
+    constructor(private news: NewsService, private download: DownloadService, private storage: Storage) {
     }
 
 
@@ -39,15 +39,18 @@ export class HomePage implements OnInit{
         });
     }
 
-    getDetails(news) {
-        this.router.navigate(['/newsdetail', { 'title': news.title, 'desc': news.description, 'img': news.urlToImage, 'url': news.url }]);
-    }
-
     buttonStore(url, urlToImage, title, description) {
 
         console.log('Storage driver ', this.storage.driver);
-        var array: string[];
-        array = [url, urlToImage, title, description]
+        //var array: string[];
+        //array = [url, urlToImage, title, description]
+        const array= {
+            url: url,
+            urlToImage: urlToImage,
+            title: title,
+            description: description
+        };
+
         let ID = 1;
 
         this.storage.ready().then((stuff) => {
