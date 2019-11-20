@@ -17,7 +17,7 @@ export class HomePage implements OnInit{
     newsArray: any = [];
     downloadArray: any = [];
     maxValue: string = "Nothing gotten yet";
-    NUMBER: number = 0;
+    //ID: number = 0;
 
     constructor(private news: NewsService, private router: Router, private download: DownloadService, private router2: Router, private storage: Storage) {
     }
@@ -43,30 +43,37 @@ export class HomePage implements OnInit{
         this.router.navigate(['/newsdetail', { 'title': news.title, 'desc': news.description, 'img': news.urlToImage, 'url': news.url }]);
     }
 
-    buttonSetPush(url, urlToImage, title, description) {
+    buttonStore(url, urlToImage, title, description) {
 
         console.log('Storage driver ', this.storage.driver);
         var array: string[];
         array = [url, urlToImage, title, description]
-
-        console.log('test', JSON.stringify(array));
+        let ID = 1;
 
         this.storage.ready().then((stuff) => {
             console.log('should get old and in with the new');
-           
-            this.storage.set('stored_articles', JSON.stringify(array));
+            
+            var name;
+            this.storage.get('stored_article_number').then((val) => {
+                ID = val;
+                ID++;
+                name = 'stored_articles_' + ID;
+                console.log("pushing: ", JSON.stringify(array));
+                this.storage.set(name, JSON.stringify(array));
+                this.storage.set('stored_article_number', ID);
+            })
         }).catch(err => { console.log('errr', err) })
     }
 
-    buttonGetPush() {
+    buttonGet() {
+        this.storage.forEach((value, key) => {
+            console.log('Returned Key: ', key);
+            console.log('Returned Data: ', JSON.parse(value));
+        }).catch(err => { console.log('errr', err) })
+    }
 
-        console.log('Storage driver ', this.storage.driver);
-
-        this.storage.get('stored_articles').then((val) => {
-            if (val != null) this.maxValue = val;
-            console.log('Returned Data: ', JSON.parse(val));
-
-        })
-            .catch(err => { console.log('errr', err) })
+    buttonClear() {
+        this.storage.clear();
+        console.log("cleared storage");
     }
 }
