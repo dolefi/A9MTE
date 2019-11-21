@@ -23,6 +23,11 @@
         </ion-item>
     </ion-list>
 
+    <ion-item>
+        <ion-label position="floating" color="dark">Search for keywords</ion-label>
+        <ion-input type="text" [(ngModel)]="query" (keyup.enter)="Newsquery(query)" clearOnEdit></ion-input>
+    </ion-item>
+
     <ion-card *ngFor="let article of newsArray">
         <ion-img src="{{article.urlToImage}}"></ion-img>
         <ion-card-header>

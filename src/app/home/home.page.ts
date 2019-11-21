@@ -7,24 +7,24 @@ import { Storage } from '@ionic/storage';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+    selector: 'app-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
 })
 
-export class HomePage implements OnInit{
+export class HomePage implements OnInit {
 
     newsArray: any = [];
     downloadArray: any = [];
     maxValue: string = "Nothing gotten yet";
-    //ID: number = 0;
+    location: string = "cz";
 
     constructor(private news: NewsService, private download: DownloadService, private storage: Storage) {
     }
 
 
     ngOnInit(): void {
-        this.loadHeadLines("cz");
+        this.loadHeadLines(this.location);
     }
 
     selectChange(country_select: any) {
@@ -32,8 +32,15 @@ export class HomePage implements OnInit{
     }
 
     loadHeadLines(location) {
-
+        this.location = location;
         this.news.getNews(location).subscribe(news => {
+            this.newsArray = news['articles'];
+            console.log(this.newsArray);
+        });
+    }
+
+    Newsquery(tosearch) {
+        this.news.searchNews(tosearch, this.location).subscribe(news => {
             this.newsArray = news['articles'];
             console.log(this.newsArray);
         });
@@ -42,8 +49,7 @@ export class HomePage implements OnInit{
     buttonStore(url, urlToImage, title, description) {
 
         console.log('Storage driver ', this.storage.driver);
-        //var array: string[];
-        //array = [url, urlToImage, title, description]
+ 
         const array= {
             url: url,
             urlToImage: urlToImage,

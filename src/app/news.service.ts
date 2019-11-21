@@ -14,4 +14,10 @@ export class NewsService {
         console.log("return from URL", this.http.get(url));
         return this.http.get(url);
     }
+
+    searchNews(query, loc) {
+        const url = this.NewsApi + 'top-headlines?q=' + query + '&pageSize=40&country=' + loc + this.apiKey;
+        console.log("return from URL", this.http.get(url));
+        return this.http.get(url);
+    }
 }
