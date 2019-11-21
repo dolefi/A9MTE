@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
 import { NewsService } from '../news.service';
-import { DownloadService } from '../download.service';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -16,7 +15,7 @@ export class HomePage implements OnInit {
     maxValue: string = "Nothing gotten yet";
     location: string = "cz";
 
-    constructor(private news: NewsService, private download: DownloadService, private storage: Storage) {
+    constructor(private news: NewsService, private storage: Storage) {
     }
 
     ngOnInit(): void {

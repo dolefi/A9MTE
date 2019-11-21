@@ -22,7 +22,7 @@ export class AppComponent {
             icon: 'paper-plane'
       },
       {
-            title: 'Preferences',
+            title: 'About app',
             url: '/list',
             icon: 'more'
       }
