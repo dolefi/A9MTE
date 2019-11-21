@@ -1,27 +1,26 @@
 <ion-header>
-  <ion-toolbar>
+<ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+        <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      List
+        About
     </ion-title>
-  </ion-toolbar>
+</ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
-      <div class="item-note" slot="end">
-        {{item.note}}
-      </div>
-    </ion-item>
-  </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+    <ion-card button>
+        <ion-card-header>
+            <ion-card-subtitle>A9MTE project @FAI UTB</ion-card-subtitle>
+            <ion-card-title>About</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            This app was created by Filip Dolezal using Ionic framework as a project fo A9MTE @FAI UTB.
+            App loads data from NewsApi.org (trending articles) and displays it in cards on main page, you can read whole article (opens browser) or store the article to memory.
+            App is than able to load cards from stored memory on another page (clearing is possible) and uses ion storage module.
+            User can select from which country should the news be loaded (approx 12 to choose from). User can also search those trending articles based on keywords (if empty -> all loaded, if no story can be loaded empty list is given)
+        </ion-card-content>
+    </ion-card>
 </ion-content>
