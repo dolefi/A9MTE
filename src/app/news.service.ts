@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
 export class NewsService {
     NewsApi = 'https://newsapi.org/v2/';
     apiKey = '&apiKey=209c9f1a45bf422c8127881fe60969ec';

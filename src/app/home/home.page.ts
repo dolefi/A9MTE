@@ -1,10 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { NewsService } from '../news.service';
 import { DownloadService } from '../download.service';
-import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
-
-
 
 @Component({
     selector: 'app-home',
@@ -21,7 +18,6 @@ export class HomePage implements OnInit {
 
     constructor(private news: NewsService, private download: DownloadService, private storage: Storage) {
     }
-
 
     ngOnInit(): void {
         this.loadHeadLines(this.location);
@@ -48,8 +44,6 @@ export class HomePage implements OnInit {
 
     buttonStore(url, urlToImage, title, description) {
 
-        console.log('Storage driver ', this.storage.driver);
- 
         const array= {
             url: url,
             urlToImage: urlToImage,
